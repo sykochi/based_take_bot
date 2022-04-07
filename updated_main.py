@@ -1,15 +1,14 @@
 import discord
 import os 
-import requests
-import json
 import random
 from replit import db
+from keep_alive import keep_alive
 
 
 client = discord.Client()
 
 
-based_takes_words = ["based", "Matthew", "matthew", "takes", "political", "why", "matt", "EUGH"]
+based_takes_words = ["based"]
 
 starter_basedtakes = ["transhumanism based. -Matthew", "human rights don't exist. -Matthew", "rethinking security politics, biopolitics-Matthew, n psychopolitics-Matthew", "squid game is proof of capitalist realism.-Matthew", "the CIA is giving me tons of english homework on purpose so i don’t read more theory-Matthew", "WAKE UP BABE PANDORA PAPERS JUS DROPPED!!!-Matthew", "accelerationist arc?-Matthew", "market stalinism go brrrr in every crevice around the world-Matthew"]
 
@@ -60,7 +59,9 @@ async def on_message(message):
       based = db["base"]
     await message.channel.send(based)
 
-      
+
+keep_alive()
+
 client.run(os.getenv('KEY'))
 
 
