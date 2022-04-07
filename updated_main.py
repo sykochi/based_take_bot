@@ -15,9 +15,9 @@ starter_basedtakes = ["transhumanism based. -Matthew", "human rights don't exist
 
 
 def update_based(based_msg):
-  if "base" in db.Keys():
+  if "base" in db.keys():
     based = db["base"]
-    based.appen(based_msg)
+    based.append(based_msg)
     db["base"] = based
   else:
     db["base"] = [based_msg]
@@ -41,8 +41,8 @@ async def on_message(message):
   msg = message.content
 
   options = starter_basedtakes
-  if "base" in db.Keys():
-    options = options + db["base"]
+  if "base" in db.keys():
+    options.extend(db["base"])
   
   if any(word in msg for word in based_takes_words):
     await message.channel.send(random.choice(options))
@@ -54,10 +54,10 @@ async def on_message(message):
     
   if msg.startswith("$del"):
     based = []
-    if "based" in db.Keys():
+    if "base" in db.keys():
       index = int(msg.split("$del", 1)[1])
       delete_based(index)
-      based = db["based"]
+      based = db["base"]
     await message.channel.send(based)
 
       
